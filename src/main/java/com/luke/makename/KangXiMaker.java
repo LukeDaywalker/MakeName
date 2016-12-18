@@ -34,7 +34,7 @@ public class KangXiMaker implements Maker {
             }
             rs.close();
             conn.close();
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
