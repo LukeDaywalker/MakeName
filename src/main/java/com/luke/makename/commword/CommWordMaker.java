@@ -12,9 +12,10 @@ import java.util.List;
 /**
  * Created by olivia on 2016/12/19.
  */
-public class CommWordMaker implements Maker{
-    List<String> commWordList =new ArrayList<String>();
-    private CommWordMaker(){
+public class CommWordMaker implements Maker {
+    List<CommWord> commWordList = new ArrayList<CommWord>();
+
+    private CommWordMaker() {
 
     }
 
@@ -32,7 +33,9 @@ public class CommWordMaker implements Maker{
             BufferedReader br = new BufferedReader(fr); //将流整体读取。
             String str;
             while ((str = br.readLine()) != null) {//判断是否是最后一行
-                commWordList.add(str);
+                for (int i = 0; i < str.length(); i++) {
+                    commWordList.add(new CommWord(str.substring(i, i + 1)));
+                }
             }
             CommWordUtil.saveWordList(commWordList);
         } catch (FileNotFoundException e) {

@@ -1,5 +1,6 @@
 package com.luke.makename.util;
 
+import com.luke.makename.commword.CommWord;
 import org.sqlite.SQLiteException;
 
 import java.sql.*;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public class CommWordUtil {
 
-    public static void saveWordList(List<String> itemList) {
+    public static void saveWordList(List<CommWord> itemList) {
         try {
             //连接SQLite的JDBC
 
@@ -22,15 +23,14 @@ public class CommWordUtil {
 
             Statement stat = conn.createStatement();
 
-            stat.executeUpdate("create table IF NOT EXISTS  word (word VARCHAR UNIQUE);");
+            stat.executeUpdate("create table IF NOT EXISTS  word (word VARCHAR UNIQUE,unicode VARCHAR);");
             PreparedStatement prep = conn.prepareStatement(
-                    "replace into word values (?);");
+                    "replace into word values (?,?);");
 
-            for (String words : itemList) {
-                for (int i = 0; i < words.length(); i++) {
-                    prep.setString(1, words.substring(i, i + 1));
+            for (CommWord word : itemList) {
+                    prep.setString(1, word.getWord());
+                    prep.setString(2, word.getUnicode());
                     prep.addBatch();
-                }
             }
 
             conn.setAutoCommit(false);

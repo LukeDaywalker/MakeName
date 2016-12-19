@@ -1,5 +1,6 @@
 package com.luke.makename;
 
+import com.luke.makename.commword.CommWordMaker;
 import com.luke.makename.three.ThreeMaker;
 
 /**
@@ -19,13 +20,13 @@ public class MakeName {
 //        DefinitionMaker.getInstance().make();
 
         //生成常用字数据库
-//        CommWordMaker.getInstance().make();
+        CommWordMaker.getInstance().make();
 
         //生成汉字
 //        WordMaker.getInstance().make();
 
         //生成三才配
-        ThreeMaker.getInstance().make();
+//        ThreeMaker.getInstance().make();
     }
 
 
