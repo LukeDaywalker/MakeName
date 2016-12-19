@@ -3,6 +3,7 @@ package com.luke.makename.three;
 import com.luke.makename.Maker;
 import com.luke.makename.Name;
 import com.luke.makename.util.DataBaseUtil;
+import com.luke.makename.util.GossipUtil;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -65,7 +66,9 @@ public class ThreeMaker implements Maker {
             int midName = three.getPeople() - 15;
             int lastName = three.getGround() - midName;
 //            if (lastName % 2 == 0) {//末尾字必须为阴
-            mNameList.add(new Name(midName, lastName));
+            if (GossipUtil.isGoodGossip(15, three.getGround())) {
+                mNameList.add(new Name(midName, lastName));
+            }
 //            }
         }
     }

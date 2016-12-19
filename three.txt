@@ -15,19 +15,12 @@ Three{35, 24}
 Three{35, 37}
 Three{37, 37}
 
-Name{1,2}
 Name{1,7}
 Name{1,15}
 Name{1,17}
-Name{1,23}
 Name{3,15}
 Name{8,24}
 Name{9,7}
 Name{9,23}
 Name{10,6}
-Name{10,14}
-Name{10,23}
 Name{18,14}
-Name{20,4}
-Name{20,17}
-Name{22,15}
