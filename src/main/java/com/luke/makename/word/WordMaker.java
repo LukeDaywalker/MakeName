@@ -1,9 +1,7 @@
 package com.luke.makename.word;
 
 import com.luke.makename.Maker;
-import com.luke.makename.definition.Definition;
 import com.luke.makename.util.DataBaseUtil;
-import com.luke.makename.util.DefinitionUtil;
 import com.luke.makename.util.Util;
 
 import java.io.*;
@@ -14,15 +12,15 @@ import java.util.List;
 /**
  * Created by olivia on 2016/12/17.
  */
-public class WordMaker2 implements Maker {
+public class WordMaker implements Maker {
     List<MetaLibItem> itemList = new ArrayList<MetaLibItem>();
 
-    private WordMaker2() {
+    private WordMaker() {
 
     }
 
-    public static WordMaker2 getInstance() {
-        return new WordMaker2();
+    public static WordMaker getInstance() {
+        return new WordMaker();
     }
 
     public void make() {

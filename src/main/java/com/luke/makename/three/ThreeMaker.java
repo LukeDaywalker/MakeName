@@ -1,6 +1,7 @@
-package com.luke.makename;
+package com.luke.makename.three;
 
-import com.luke.makename.three.Three;
+import com.luke.makename.Maker;
+import com.luke.makename.Name;
 import com.luke.makename.util.DataBaseUtil;
 
 import java.io.*;
@@ -64,7 +65,7 @@ public class ThreeMaker implements Maker {
             int midName = three.getPeople() - 15;
             int lastName = three.getGround() - midName;
 //            if (lastName % 2 == 0) {//末尾字必须为阴
-                mNameList.add(new Name(midName, lastName));
+            mNameList.add(new Name(midName, lastName));
 //            }
         }
     }
@@ -77,7 +78,7 @@ public class ThreeMaker implements Maker {
 
     private void initThreeList() {
         for (int people : mGoodList) {
-            if (people > 15 && people < 39) {
+            if (people > 15 && people < 45) {
                 int mod = people % 10;
                 switch (mod) {
                     case 3:
@@ -101,7 +102,7 @@ public class ThreeMaker implements Maker {
     private void addToThreeList(int people, int ground) {
         if (mGoodList.contains(ground + 15)) {//总格大吉
             int outer = ground + 16 - people;
-            if (mGoodList.contains(outer) && outer < 25) {//外格大吉
+            if (mGoodList.contains(outer) && outer < 31) {//外格大吉
                 mThreeList.add(new Three(people, ground));
             }
         }
@@ -109,15 +110,15 @@ public class ThreeMaker implements Maker {
 
     private void initPeopleHuo(int people) {
         for (int ground : mGoodList) {
-            if (ground > 2 && ground < 48) {
+            if (ground > 2 && ground < 60) {
                 int mod = ground % 10;
-                switch (mod) {
+                switch (mod) {//去掉3 4，土火火评分不高
                     case 1://阳
-                    case 3:
+//                    case 3:
                     case 5:
 
                     case 2://阴
-                    case 4:
+//                    case 4:
                     case 6:
                         addToThreeList(people, ground);
                         break;
@@ -129,7 +130,7 @@ public class ThreeMaker implements Maker {
 
     private void initPeopleTu(int people) {
         for (int ground : mGoodList) {
-            if (ground > 2 && ground < 48) {
+            if (ground > 2 && ground < 60) {
                 int mod = ground % 10;
                 switch (mod) {
                     case 3://阳
@@ -148,7 +149,7 @@ public class ThreeMaker implements Maker {
 
     private void initPeopleJin(int people) {
         for (int ground : mGoodList) {
-            if (ground > 2 && ground < 48) {
+            if (ground > 2 && ground < 60) {
                 int mod = ground % 10;
                 switch (mod) {
                     case 5://阳

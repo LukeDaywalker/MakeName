@@ -4,18 +4,22 @@ import com.luke.makename.util.DataBaseUtil;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by LukeSkywalker on 2016/12/16.
  */
 public class StorkMaker implements Maker {
-    private List<Integer> mGoodList = Arrays.asList(1, 3, 5, 7, 8, 11, 13, 15, 16, 18, 21, 23, 24, 25, 31, 32, 33, 35, 37, 39, 41, 45, 47, 48, 52, 57, 61, 63, 65, 67, 68, 81);
-    private List<Integer> mHalfGoodList = Arrays.asList(6, 17, 26, 27, 29, 30, 38, 49, 51, 55, 58, 71, 73, 75);
-    private List<Integer> mLastList = new ArrayList<Integer>();
     private List<Name> mNameList = new ArrayList<Name>();
 
+    {
+        mNameList.add(new Name(1,23));
+        mNameList.add(new Name(1,15));
+        mNameList.add(new Name(8,24));
+        mNameList.add(new Name(1,17));
+        mNameList.add(new Name(3,15));
+        mNameList.add(new Name(1,7));
+    }
     private StorkMaker() {
     }
 
@@ -36,13 +40,8 @@ public class StorkMaker implements Maker {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(smaliFile), "UTF8"));
 
-
-            addLast(writer, mGoodList);
-            addLast(writer, mHalfGoodList);
-            addMid(writer, mGoodList);
-            addMid(writer, mHalfGoodList);
             writeName(writer);
-//            DataBaseUtil.saveNameList(mNameList);
+            DataBaseUtil.saveNameList(mNameList);
 //            DataBaseUtil.printName();
             writer.flush();
 
@@ -61,36 +60,5 @@ public class StorkMaker implements Maker {
         }
     }
 
-    private void addLast(BufferedWriter writer, List<Integer> list) throws IOException {
-        for (Integer num : list) {
-            if (num < 30) {
-                int out = num + 1;
-                if (mGoodList.contains(out) || mHalfGoodList.contains(out)) {
-                    mLastList.add(num);
-//                    writer.write(num + "\n");
-                }
-            }
-        }
-    }
 
-    private void addMid(BufferedWriter writer, List<Integer> list) throws IOException {
-        for (Integer num : list) {
-            if (num < 30) {
-                int people = 15 + num;//人格
-                if (mGoodList.contains(people) || mHalfGoodList.contains(people)) {
-                    for (Integer last : mLastList) {
-                        int floor = num + last;//地格
-                        if (mGoodList.contains(floor) || mHalfGoodList.contains(floor)) {
-                            int all = 15 + num + last;//总格
-                            if (mGoodList.contains(all) || mHalfGoodList.contains(all)) {
-                                Name name = new Name(num, last);
-                                mNameList.add(name);
-//                                writer.write(name + "\n");
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
