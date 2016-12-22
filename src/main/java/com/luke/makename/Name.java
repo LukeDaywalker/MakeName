@@ -1,6 +1,7 @@
 package com.luke.makename;
 
 import com.luke.makename.util.KangXiUtil;
+import com.luke.makename.util.UnionUtil;
 import com.luke.makename.util.ZdicUtil;
 
 import java.util.ArrayList;
@@ -35,20 +36,23 @@ public class Name {
         }
     }
 
-    private boolean canPair(String midTone, String lastTone) {
-        if(midTone.length()>1) {
-            String tmp = midTone.substring(0, 2);
-            if (shengMuFuList.contains(tmp)) {
-                String ym = midTone.substring(2);
-                return !lastTone.contains(ym);
+    private boolean canPair(String midPy, String lastPy) {
+        if (midPy.length() > 1) {
+            if (midPy.endsWith("iu")) {//和刘谐音
+                return false;
             }
-            tmp = midTone.substring(0, 1);
+            String tmp = midPy.substring(0, 2);
+            if (shengMuFuList.contains(tmp)) {
+                String ym = midPy.substring(2);
+                return !lastPy.endsWith(ym);
+            }
+            tmp = midPy.substring(0, 1);
             if (shengMuList.contains(tmp)) {
-                String ym = midTone.substring(1);
-                return !lastTone.contains(ym);
+                String ym = midPy.substring(1);
+                return !lastPy.endsWith(ym);
             }
         }
-        return !lastTone.contains(midTone);
+        return !lastPy.contains(midPy);
     }
 
     public List<NameItem> getNameItemList() {
@@ -69,7 +73,8 @@ public class Name {
     }
 
     private void addWord(int stork, List<Word> wordList, boolean isMid) {
-        List<Word> words = ZdicUtil.getWordList(stork, isMid);
+//        List<Word> words = ZdicUtil.getWordList(stork, isMid);
+        List<Word> words = UnionUtil.getWordList(stork, isMid);
         wordList.addAll(words);
     }
 

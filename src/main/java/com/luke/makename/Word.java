@@ -5,9 +5,11 @@ package com.luke.makename;
  */
 public class Word {
     private final String word;
+    private String kxWord;
     private final String five;
     private final int stork;
     private String pinyin;
+    private String pyt;
     private int tone;
     private int preStork;
 
@@ -24,8 +26,22 @@ public class Word {
         this.pinyin=pinyin;
     }
 
+    public Word(String word, String kxWord,String five, int stork,int tone,String pinyin,String pyt) {
+        this.word = word;
+        this.kxWord = kxWord;
+        this.five = five;
+        this.stork = stork;
+        this.tone=tone;
+        this.pinyin=pinyin;
+        this.pyt=pyt;
+    }
+
     public String getWord() {
         return word;
+    }
+
+    public String getKxWord() {
+        return kxWord;
     }
 
     public String getFive() {
@@ -42,6 +58,10 @@ public class Word {
 
     public String getPinyin() {
         return pinyin;
+    }
+
+    public String getPyt() {
+        return pyt;
     }
 
     public int getPreStork() {

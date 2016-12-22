@@ -12,6 +12,7 @@ import java.util.List;
  * Created by olivia on 2016/12/17.
  */
 public class DataBaseUtil {
+
     public static void saveNameList(List<Name> nameList) {
         try {
             //连接SQLite的JDBC
@@ -20,25 +21,28 @@ public class DataBaseUtil {
 
             //建立一个数据库名zieckey.db的连接，如果不存在就在当前目录下创建之
 
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:name.db");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:union.db");
 
             Statement stat = conn.createStatement();
 
-            stat.executeUpdate("create table IF NOT EXISTS  name (name VARCHAR UNIQUE, total_three VARCHAR ,total_five VARCHAR ,mid_stork INTEGER ,last_stork INTEGER ,mid_tone INTEGER ,last_tone INTEGER , mid_pinyin VARCHAR ,last_pinyin VARCHAR);");
+            stat.executeUpdate("create table IF NOT EXISTS  name (name VARCHAR UNIQUE,kxName VARCHAR , pinyin VARCHAR, midPinyin VARCHAR ,lastPinyin VARCHAR, threePowers VARCHAR ,fiveElements VARCHAR ,midStork INTEGER ,lastStork INTEGER ,midTone INTEGER ,lastTone INTEGER);");
             PreparedStatement prep = conn.prepareStatement(
-                    "replace into name values (?,?,?,?,?,?,?,?,?);");
+                    "replace into name values (?,?,?,?,?,?,?,?,?,?,?);");
 
             for (Name name : nameList) {
                 for (NameItem nameItem : name.getNameItemList()) {
                     prep.setString(1, "刘" + nameItem.getName());
-                    prep.setString(2, nameItem.getTotalThree());
-                    prep.setString(3, nameItem.getTotalFive());
-                    prep.setInt(4, nameItem.getMidStork());
-                    prep.setInt(5, nameItem.getLastStork());
-                    prep.setInt(6, nameItem.getMidTone());
-                    prep.setInt(7, nameItem.getLastTone());
-                    prep.setString(8, nameItem.getMidPinyin());
-                    prep.setString(9, nameItem.getLastPinyin());
+                    prep.setString(2, "劉" + nameItem.getKxName());
+                    prep.setString(3, "liú " + nameItem.getPinyin());
+                    prep.setString(4, nameItem.getMidPinyin());
+                    prep.setString(5, nameItem.getLastPinyin());
+                    prep.setString(6, nameItem.getTotalThree());
+                    prep.setString(7, nameItem.getTotalFive());
+                    prep.setInt(8, nameItem.getMidStork());
+                    prep.setInt(9, nameItem.getLastStork());
+                    prep.setInt(10, nameItem.getMidTone());
+                    prep.setInt(11, nameItem.getLastTone());
+
                     prep.addBatch();
                 }
             }
@@ -78,7 +82,7 @@ public class DataBaseUtil {
                 for (int i = 0; i < nameItemList.size(); i++) {
                     if (i < 25) {
                         NameItem nameItem = nameItemList.get(i);
-                        prep.setString(1, nameItem.getName());
+                        prep.setString(1, nameItem.getKxName());
                         prep.setString(2, nameItem.getTotalThree());
                         prep.setString(3, nameItem.getTotalFive());
                         prep.setInt(4, nameItem.getMidStork());

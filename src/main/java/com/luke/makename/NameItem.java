@@ -18,28 +18,36 @@ public class NameItem {
         return midWord.getWord() + lastWord.getWord();
     }
 
-    public int getMidStork(){
+    public String getKxName() {
+        return midWord.getKxWord() + lastWord.getKxWord();
+    }
+
+    public int getMidStork() {
         return midWord.getStork();
     }
 
-    public int getLastStork(){
+    public int getLastStork() {
         return lastWord.getStork();
     }
 
-    public int getMidTone(){
+    public int getMidTone() {
         return midWord.getTone();
     }
 
-    public int getLastTone(){
+    public int getLastTone() {
         return lastWord.getTone();
     }
 
-    public String getMidPinyin(){
+    public String getMidPinyin() {
         return midWord.getPinyin();
     }
 
-    public String getLastPinyin(){
+    public String getLastPinyin() {
         return lastWord.getPinyin();
+    }
+
+    public String getPinyin() {
+        return midWord.getPyt() + " " + lastWord.getPyt();
     }
 
     public String getTotalThree() {

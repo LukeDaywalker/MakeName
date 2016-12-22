@@ -6,9 +6,7 @@ import com.luke.makename.util.DataBaseUtil;
 import com.luke.makename.util.GossipUtil;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LukeSkywalker on 2016/12/16.
@@ -20,6 +18,7 @@ public class ThreeMaker implements Maker {
 
     private ThreeMaker() {
     }
+
 
     public static ThreeMaker getInstance() {
         return new ThreeMaker();
