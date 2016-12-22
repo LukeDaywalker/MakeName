@@ -25,9 +25,9 @@ public class DataBaseUtil {
 
             Statement stat = conn.createStatement();
 
-            stat.executeUpdate("create table IF NOT EXISTS  name (name VARCHAR UNIQUE,kxName VARCHAR , pinyin VARCHAR, midPinyin VARCHAR ,lastPinyin VARCHAR, threePowers VARCHAR ,fiveElements VARCHAR ,midStork INTEGER ,lastStork INTEGER ,midTone INTEGER ,lastTone INTEGER);");
+            stat.executeUpdate("create table IF NOT EXISTS  user_name (userName VARCHAR UNIQUE,kxName VARCHAR , pinyin VARCHAR, midPinyin VARCHAR ,lastPinyin VARCHAR, threePowers VARCHAR ,fiveElements VARCHAR ,midStork INTEGER ,lastStork INTEGER ,midTone INTEGER ,lastTone INTEGER);");
             PreparedStatement prep = conn.prepareStatement(
-                    "replace into name values (?,?,?,?,?,?,?,?,?,?,?);");
+                    "replace into user_name values (?,?,?,?,?,?,?,?,?,?,?);");
 
             for (Name name : nameList) {
                 for (NameItem nameItem : name.getNameItemList()) {

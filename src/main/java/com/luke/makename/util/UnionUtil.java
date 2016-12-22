@@ -16,23 +16,29 @@ public class UnionUtil {
         List<String> nameList = Arrays.asList(
                 "xiao,wei", "jing",
                 "kai,hai", "hui,qin",
-                "bing,lie", "",
-                "hao", "kai,jun", "",
-                "ting", "yu", "kai,min", "xi,zhang",
-                "qing", "xia",
+                "bing,lie", "chong,wen",
+                "hao", "kai,jun", "shao,wen",
+                "ting", "yu", "lian,min", "xi,zhang",
+                "qing", "xia","lian,hua","xiu,pin",
 
-                "yu,an", "",
+                "yu,an", "xiu,lan",
                 "na", "jin,feng", "yong,hong",
                 "peng", "hui,zhen", "de,yuan",
                 "xiao,dong", "hui,fang", "qing,jun",
 
                 "hai,yang",
 
+                "lin","yan","ping","chong,yu",
+
                 "zhen,wei", "qing", "zhen,guo", "zhen,zhong",
                 "kai,ji", "kai,kun", "kai,zhang",
 
                 "shi,bo", "ming,de", "yan,fen",
-                "xin,ying", "", "",
+                "xin,ying", "ming,feng", "qing,ju",
+                "yu,ye","xue,wen","ming,zhen","de,hua",
+                "ming,guang",
+                "yan,de","yan,wen",
+                "jin,quan","jin,hua","bao,xin","yu,mei",
 
                 "yong,bo","yong,tao","ji,min"
         );
