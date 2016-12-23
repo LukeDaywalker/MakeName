@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by olivia on 2016/12/16.
+ * http://blog.sina.com.cn/s/blog_5134f2be0102drqu.html
  */
 public class Name {
     private final int midName;
@@ -19,6 +20,10 @@ public class Name {
     private final List<NameItem> nameItemList = new ArrayList<NameItem>();
     private final List<String> shengMuFuList = Arrays.asList("zh", "ch", "sh");
     private final List<String> shengMuList = Arrays.asList("b", "p", "m", "f", "d", "t", "n", "l", "g", "k", "h", "j", "q", "x", "z", "c", "s", "y", "w", "r");
+    private final List<String> yunMuList = Arrays.asList("a", " o", "e", " i", "u");
+    private final List<String> avoidShengMuList = Arrays.asList("l", "n");
+    private final List<String> avoidYunFuList = Arrays.asList("o", "u");
+    private final List<String> avoidYunTouList = Arrays.asList("i");
 
     public Name(int midName, int lastName) {
         this.midName = midName;
@@ -37,6 +42,31 @@ public class Name {
     }
 
     private boolean canPair(String midPy, String lastPy) {
+        if (midPy.length() > 1) {
+            if (midPy.endsWith("iu")) {//和刘谐音
+                return false;
+            }
+            String tmp = midPy.substring(0, 2);
+            if (shengMuFuList.contains(tmp)) {
+                String ym = midPy.substring(2);
+                return !lastPy.endsWith(ym);
+            }
+            tmp = midPy.substring(0, 1);
+            if (shengMuList.contains(tmp)) {
+                String ym = midPy.substring(1);
+                return !lastPy.endsWith(ym);
+            }
+        }
+        return !lastPy.contains(midPy);
+    }
+
+    private boolean canPair(Word midWord, Word lastWord) {
+        String midPy = midWord.getPinyin();
+        String lastPy = lastWord.getPinyin();
+        if (midPy.startsWith("n") || midPy.startsWith("l")) {
+            return false;
+        }
+        //TODO
         if (midPy.length() > 1) {
             if (midPy.endsWith("iu")) {//和刘谐音
                 return false;

@@ -13,27 +13,39 @@ public class Word {
     private int tone;
     private int preStork;
 
+    private String shengMu;//声母
+    private String yunTou;//韵头
+    private String yunFu;//韵腹
+    private String yunWei;//韵尾
+
     public Word(String word, String five, int stork) {
         this.word = word;
         this.five = five;
         this.stork = stork;
     }
-    public Word(String word, String five, int stork,int tone,String pinyin) {
+
+    public Word(String word, String five, int stork, int tone, String pinyin) {
         this.word = word;
         this.five = five;
         this.stork = stork;
-        this.tone=tone;
-        this.pinyin=pinyin;
+        this.tone = tone;
+        this.pinyin = pinyin;
     }
 
-    public Word(String word, String kxWord,String five, int stork,int tone,String pinyin,String pyt) {
+    public Word(String word, String kxWord, String five, int stork, int tone, String pinyin, String pyt,
+                String shengMu, String yunTou, String yunFu, String yunWei) {
         this.word = word;
         this.kxWord = kxWord;
         this.five = five;
         this.stork = stork;
-        this.tone=tone;
-        this.pinyin=pinyin;
-        this.pyt=pyt;
+        this.tone = tone;
+        this.pinyin = pinyin;
+        this.pyt = pyt;
+
+        this.shengMu = shengMu;
+        this.yunTou = yunTou;
+        this.yunFu = yunFu;
+        this.yunWei = yunWei;
     }
 
     public String getWord() {
@@ -96,5 +108,21 @@ public class Word {
                 return "水";
         }
         return "";
+    }
+
+    public String getShengMu() {
+        return shengMu;
+    }
+
+    public String getYunTou() {
+        return yunTou;
+    }
+
+    public String getYunFu() {
+        return yunFu;
+    }
+
+    public String getYunWei() {
+        return yunWei;
     }
 }

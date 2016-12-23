@@ -19,7 +19,7 @@ public class UnionUtil {
                 "bing,lie", "chong,wen",
                 "hao", "kai,jun", "shao,wen",
                 "ting", "yu", "lian,min", "xi,zhang",
-                "qing", "xia","lian,hua","xiu,pin",
+                "qing", "xia", "lian,hua", "xiu,pin",
 
                 "yu,an", "xiu,lan",
                 "na", "jin,feng", "yong,hong",
@@ -28,19 +28,19 @@ public class UnionUtil {
 
                 "hai,yang",
 
-                "lin","yan","ping","chong,yu",
+                "lin", "yan", "ping", "chong,yu",
 
                 "zhen,wei", "qing", "zhen,guo", "zhen,zhong",
                 "kai,ji", "kai,kun", "kai,zhang",
 
                 "shi,bo", "ming,de", "yan,fen",
                 "xin,ying", "ming,feng", "qing,ju",
-                "yu,ye","xue,wen","ming,zhen","de,hua",
+                "yu,ye", "xue,wen", "ming,zhen", "de,hua",
                 "ming,guang",
-                "yan,de","yan,wen",
-                "jin,quan","jin,hua","bao,xin","yu,mei",
+                "yan,de", "yan,wen",
+                "jin,quan", "jin,hua", "bao,xin", "yu,mei",
 
-                "yong,bo","yong,tao","ji,min"
+                "yong,bo", "yong,tao", "ji,min"
         );
         for (String name : nameList) {
             String[] words = name.split(",");
@@ -76,7 +76,14 @@ public class UnionUtil {
                 int storkInt = rs.getInt("kxAllStork");
                 int tone = Integer.parseInt(rs.getString("tone"));
                 String pyt = rs.getString("pyt");
-                Word word = new Word(wordStr, kxWord, fiveStr, storkInt, tone, pinyin, pyt);
+
+                String shengMu = rs.getString("shengMu");
+                String yunTou = rs.getString("yunTou");
+                String yunFu = rs.getString("yunFu");
+                String yunWei = rs.getString("yunWei");
+
+                Word word = new Word(wordStr, kxWord, fiveStr, storkInt, tone, pinyin, pyt,
+                        shengMu, yunTou, yunFu, yunWei);
                 wordList.add(word);
             }
             rs.close();
