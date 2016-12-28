@@ -1,5 +1,6 @@
 package com.luke.makename;
 
+import com.luke.makename.name.Name;
 import com.luke.makename.util.DataBaseUtil;
 
 import java.io.*;
@@ -54,7 +55,7 @@ public class StorkMaker implements Maker {
     private void writeName(BufferedWriter writer) throws IOException {
         for (Name name : mNameList) {
             writer.write(name.toString()+"\n");
-//            for (NameItem nameItem : name.getNameItemList()) {
+//            for (ThreeNameItem nameItem : name.getThreeNameItemList()) {
 //                writer.write(nameItem.getName() + " " + nameItem.getTotalThree() + " " + nameItem.getTotalFive()+"\n");
 //            }
         }

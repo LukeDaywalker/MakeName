@@ -1,7 +1,7 @@
 package com.luke.makename.util;
 
-import com.luke.makename.Name;
-import com.luke.makename.NameItem;
+import com.luke.makename.name.Name;
+import com.luke.makename.name.ThreeNameItem;
 import com.luke.makename.word.MetaLibItem;
 import org.sqlite.SQLiteException;
 
@@ -30,18 +30,18 @@ public class DataBaseUtil {
                     "replace into user_name values (?,?,?,?,?,?,?,?,?,?,?);");
 
             for (Name name : nameList) {
-                for (NameItem nameItem : name.getNameItemList()) {
-                    prep.setString(1, "刘" + nameItem.getName());
-                    prep.setString(2, "劉" + nameItem.getKxName());
-                    prep.setString(3, "liú " + nameItem.getPinyin());
-                    prep.setString(4, nameItem.getMidPinyin());
-                    prep.setString(5, nameItem.getLastPinyin());
-                    prep.setString(6, nameItem.getTotalThree());
-                    prep.setString(7, nameItem.getTotalFive());
-                    prep.setInt(8, nameItem.getMidStork());
-                    prep.setInt(9, nameItem.getLastStork());
-                    prep.setInt(10, nameItem.getMidTone());
-                    prep.setInt(11, nameItem.getLastTone());
+                for (ThreeNameItem threeNameItem : name.getThreeNameItemList()) {
+                    prep.setString(1, "刘" + threeNameItem.getName());
+                    prep.setString(2, "劉" + threeNameItem.getKxName());
+                    prep.setString(3, "liú " + threeNameItem.getPinyin());
+                    prep.setString(4, threeNameItem.getMidPinyin());
+                    prep.setString(5, threeNameItem.getLastPinyin());
+                    prep.setString(6, threeNameItem.getTotalThree());
+                    prep.setString(7, threeNameItem.getTotalFive());
+                    prep.setInt(8, threeNameItem.getMidStork());
+                    prep.setInt(9, threeNameItem.getLastStork());
+                    prep.setInt(10, threeNameItem.getMidTone());
+                    prep.setInt(11, threeNameItem.getLastTone());
 
                     prep.addBatch();
                 }
@@ -78,15 +78,15 @@ public class DataBaseUtil {
                     "replace into name values (?,?,?,?,?);");
 
             for (Name name : nameList) {
-                List<NameItem> nameItemList = name.getNameItemList();
-                for (int i = 0; i < nameItemList.size(); i++) {
+                List<ThreeNameItem> threeNameItemList = name.getThreeNameItemList();
+                for (int i = 0; i < threeNameItemList.size(); i++) {
                     if (i < 25) {
-                        NameItem nameItem = nameItemList.get(i);
-                        prep.setString(1, nameItem.getKxName());
-                        prep.setString(2, nameItem.getTotalThree());
-                        prep.setString(3, nameItem.getTotalFive());
-                        prep.setInt(4, nameItem.getMidStork());
-                        prep.setInt(5, nameItem.getLastStork());
+                        ThreeNameItem threeNameItem = threeNameItemList.get(i);
+                        prep.setString(1, threeNameItem.getKxName());
+                        prep.setString(2, threeNameItem.getTotalThree());
+                        prep.setString(3, threeNameItem.getTotalFive());
+                        prep.setInt(4, threeNameItem.getMidStork());
+                        prep.setInt(5, threeNameItem.getLastStork());
                         prep.addBatch();
                     }
                 }

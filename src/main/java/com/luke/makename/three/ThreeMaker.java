@@ -1,7 +1,7 @@
 package com.luke.makename.three;
 
 import com.luke.makename.Maker;
-import com.luke.makename.Name;
+import com.luke.makename.name.Name;
 import com.luke.makename.util.DataBaseUtil;
 import com.luke.makename.util.GossipUtil;
 

@@ -1,11 +1,9 @@
 package com.luke.makename.util;
 
-import com.luke.makename.Word;
 import com.luke.makename.definition.Definition;
 import org.sqlite.SQLiteException;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

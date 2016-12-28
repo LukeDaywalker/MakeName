@@ -1,6 +1,6 @@
 package com.luke.makename.util;
 
-import com.luke.makename.Word;
+import com.luke.makename.name.Word;
 import org.sqlite.SQLiteException;
 
 import java.sql.*;
@@ -34,7 +34,7 @@ public class UnionUtil {
                 "kai,ji", "kai,kun", "kai,zhang",
 
                 "shi,bo", "ming,de", "yan,fen",
-                "xin,ying", "ming,feng", "qing,ju",
+                "jin,liang","xin,ying", "ming,feng", "qing,ju",
                 "yu,ye", "xue,wen", "ming,zhen", "de,hua",
                 "ming,guang",
                 "yan,de", "yan,wen",
@@ -50,7 +50,7 @@ public class UnionUtil {
         }
     }
 
-    public static List<Word> getWordList(int stork, boolean isMid) {
+    public static List<Word> getWordList(int stork) {
         List<Word> wordList = new ArrayList<Word>();
         try {
             //连接SQLite的JDBC
@@ -62,9 +62,8 @@ public class UnionUtil {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:union.db");
 
             Statement stat = conn.createStatement();
-            String toneStr = isMid ? "IN ('3','4')" : "IN ('1','2')";
 
-            ResultSet rs = stat.executeQuery("SELECT * FROM union_word WHERE ty=1 AND duoYin=1 AND goodOrIll='吉' AND kxAllStork=" + stork + " AND tone " + toneStr + ";");
+            ResultSet rs = stat.executeQuery("SELECT * FROM union_word WHERE ty=1 AND duoYin=1 AND goodOrIll='吉' AND kxAllStork=" + stork + ";");
             while (rs.next()) {
                 String pinyin = rs.getString("py");
                 if (mAvoidWordSet.contains(pinyin)) {
