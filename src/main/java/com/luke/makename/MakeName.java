@@ -1,6 +1,7 @@
 package com.luke.makename;
 
 import com.luke.makename.commword.CommWordMaker;
+import com.luke.makename.three.PetMaker;
 import com.luke.makename.three.ThreeMaker;
 
 /**
@@ -27,6 +28,9 @@ public class MakeName {
 
         //生成三才配
         ThreeMaker.getInstance().make();
+
+        //生成小名
+//        PetMaker.getInstance().make();
     }
 
 

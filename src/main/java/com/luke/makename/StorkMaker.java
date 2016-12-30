@@ -42,7 +42,7 @@ public class StorkMaker implements Maker {
                     new FileOutputStream(smaliFile), "UTF8"));
 
             writeName(writer);
-            DataBaseUtil.saveNameList(mNameList);
+            DataBaseUtil.saveNameList(mNameList, "user_name");
 //            DataBaseUtil.printName();
             writer.flush();
 

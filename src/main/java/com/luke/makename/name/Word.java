@@ -11,7 +11,6 @@ public class Word {
     private String pinyin;
     private String pyt;
     private int tone;
-    private int preStork;
 
     private String shengMu;//声母
     private String yunTou;//韵头
@@ -76,39 +75,6 @@ public class Word {
         return pyt;
     }
 
-    public int getPreStork() {
-        return preStork;
-    }
-
-    public void setPreStork(int preStork) {
-        this.preStork = preStork;
-    }
-
-    public int getGrid() {
-        return preStork + stork;
-    }
-
-    public String getThree() {
-        int mod = (preStork + stork) % 10;
-        switch (mod) {
-            case 1:
-            case 2:
-                return "木";
-            case 3:
-            case 4:
-                return "火";
-            case 5:
-            case 6:
-                return "土";
-            case 7:
-            case 8:
-                return "金";
-            case 9:
-            case 0:
-                return "水";
-        }
-        return "";
-    }
 
     public String getShengMu() {
         return shengMu;

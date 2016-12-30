@@ -3,59 +3,46 @@ package com.luke.makename.name;
 /**
  * Created by olivia on 2016/12/17.
  */
-public class ThreeNameItem {
-    private final Word midWord;
-    private final Word lastWord;
+public class ThreeNameItem extends NameItem{
+    private final Word secondWord;
+    private final Word thirdWord;
 
-    public ThreeNameItem(Word midWord, Word lastWord) {
-        this.midWord = midWord;
-        this.lastWord = lastWord;
-        this.midWord.setPreStork(15);
-        this.lastWord.setPreStork(midWord.getStork());
+    public ThreeNameItem(Word secondWord, Word thirdWord) {
+        this.secondWord = secondWord;
+        this.thirdWord = thirdWord;
     }
 
+    public Word getSecondWord() {
+        return secondWord;
+    }
+
+    public Word getThirdWord() {
+        return thirdWord;
+    }
+
+    @Override
     public String getName() {
-        return midWord.getWord() + lastWord.getWord();
+        return secondWord.getWord() + thirdWord.getWord();
     }
 
+    @Override
     public String getKxName() {
-        return midWord.getKxWord() + lastWord.getKxWord();
-    }
-
-    public int getMidStork() {
-        return midWord.getStork();
-    }
-
-    public int getLastStork() {
-        return lastWord.getStork();
-    }
-
-    public int getMidTone() {
-        return midWord.getTone();
-    }
-
-    public int getLastTone() {
-        return lastWord.getTone();
-    }
-
-    public String getMidPinyin() {
-        return midWord.getPinyin();
-    }
-
-    public String getLastPinyin() {
-        return lastWord.getPinyin();
+        return secondWord.getKxWord() + thirdWord.getKxWord();
     }
 
     public String getPinyin() {
-        return midWord.getPyt() + " " + lastWord.getPyt();
+        return secondWord.getPyt() + " " + thirdWord.getPyt();
     }
 
-    public String getTotalThree() {
-        return "(土" + midWord.getThree() + midWord.getGrid() + lastWord.getThree() + lastWord.getGrid() + ")"
-                + (15 + midWord.getStork() + lastWord.getStork());
+    public int getPeopleGrid() {
+        return 15 + secondWord.getStork();
+    }
+
+    public int getGroundGrid() {
+        return secondWord.getStork() + thirdWord.getStork();
     }
 
     public String getTotalFive() {
-        return "[火" + midWord.getFive() + midWord.getStork() + lastWord.getFive() + lastWord.getStork() + "]";
+        return "[火" + secondWord.getFive() + secondWord.getStork() + thirdWord.getFive() + thirdWord.getStork() + "]";
     }
 }
