@@ -17,6 +17,8 @@ public class Word {
     private String yunFu;//韵腹
     private String yunWei;//韵尾
 
+    private boolean isSurName;//是否为姓
+
     public Word(String word, String five, int stork) {
         this.word = word;
         this.five = five;
@@ -32,7 +34,7 @@ public class Word {
     }
 
     public Word(String word, String kxWord, String five, int stork, int tone, String pinyin, String pyt,
-                String shengMu, String yunTou, String yunFu, String yunWei) {
+                String shengMu, String yunTou, String yunFu, String yunWei, boolean isSurName) {
         this.word = word;
         this.kxWord = kxWord;
         this.five = five;
@@ -45,6 +47,8 @@ public class Word {
         this.yunTou = yunTou;
         this.yunFu = yunFu;
         this.yunWei = yunWei;
+
+        this.isSurName = isSurName;
     }
 
     public String getWord() {
@@ -90,5 +94,12 @@ public class Word {
 
     public String getYunWei() {
         return yunWei;
+    }
+
+    public boolean isSurName() {
+        if (getWord().equals("柴")) {
+            return false;
+        }
+        return isSurName;
     }
 }

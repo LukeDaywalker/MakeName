@@ -3,7 +3,7 @@ package com.luke.makename.name;
 /**
  * Created by olivia on 2016/12/17.
  */
-public class ThreeNameItem extends NameItem{
+public class ThreeNameItem extends NameItem {
     private final Word secondWord;
     private final Word thirdWord;
 
@@ -22,16 +22,16 @@ public class ThreeNameItem extends NameItem{
 
     @Override
     public String getName() {
-        return secondWord.getWord() + thirdWord.getWord();
+        return "刘" + secondWord.getWord() + thirdWord.getWord();
     }
 
     @Override
     public String getKxName() {
-        return secondWord.getKxWord() + thirdWord.getKxWord();
+        return "劉" + secondWord.getKxWord() + thirdWord.getKxWord();
     }
 
     public String getPinyin() {
-        return secondWord.getPyt() + " " + thirdWord.getPyt();
+        return "liú " + secondWord.getPyt() + " " + thirdWord.getPyt();
     }
 
     public int getPeopleGrid() {
@@ -44,5 +44,29 @@ public class ThreeNameItem extends NameItem{
 
     public String getTotalFive() {
         return "[火" + secondWord.getFive() + secondWord.getStork() + thirdWord.getFive() + thirdWord.getStork() + "]";
+    }
+
+    public String getSecondPinyin() {
+        return getSecondWord().getPinyin();
+    }
+
+    public String getOtherPinyin() {
+        return getThirdWord().getPinyin();
+    }
+
+    public int getSecondStork() {
+        return getSecondWord().getStork();
+    }
+
+    public int getOtherStork() {
+        return getThirdWord().getStork();
+    }
+
+    public int getSecondTone() {
+        return getSecondWord().getTone();
+    }
+
+    public int getOtherTone() {
+        return getThirdWord().getTone();
     }
 }

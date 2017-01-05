@@ -46,4 +46,16 @@ public abstract class NameItem {
     }
 
     public abstract String getTotalFive();
+
+    public abstract String getSecondPinyin();
+
+    public abstract String getOtherPinyin();
+
+    public abstract int getSecondStork();
+
+    public abstract int getOtherStork();
+
+    public abstract int getSecondTone();
+
+    public abstract int getOtherTone();
 }

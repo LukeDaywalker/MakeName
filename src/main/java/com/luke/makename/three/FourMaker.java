@@ -1,6 +1,7 @@
 package com.luke.makename.three;
 
 import com.luke.makename.Maker;
+import com.luke.makename.name.FourName;
 import com.luke.makename.name.Name;
 import com.luke.makename.util.DataBaseUtil;
 import com.luke.makename.util.GossipUtil;
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by LukeSkywalker on 2016/12/16.
  */
 public class FourMaker implements Maker {
-    private List<Integer> mGoodList = Arrays.asList(1, 3, 5, 7, /*8,*/ 11, 13, 15, 16, 18, 21, 23, 24, 25, 31, 32, 33, 35, 37, 39, 41, 45, 47, 48, 52, 57, 61, 63, 65, 67, 68, 81);
+    private List<Integer> mGoodList = Arrays.asList(1, 3, 5, 7, 8, 11, 13, 15, 16, 18, 21, 23, 24, 25, 31, 32, 33, 35, 37, 39, 41, 45, 47, 48, 52, 57, 61, 63, 65, 67, 68, 81);
     private List<Three> mThreeList = new ArrayList<Three>();
     private List<Name> mNameList = new ArrayList<Name>();
 
@@ -27,21 +28,22 @@ public class FourMaker implements Maker {
 
     public void make() {
 
-            initThreeList();
-            initNameList();
-            DataBaseUtil.saveNameList(mNameList, "four_name");
-            DataBaseUtil.saveTestNameList(mNameList);
-
+        initThreeList();
+        initNameList();
+        DataBaseUtil.saveNameList(mNameList, "four_name");
     }
 
 
     private void initNameList() {
         for (Three three : mThreeList) {
-            int midName = three.getPeople() - 15;
-            int lastName = three.getGround() - midName;
-//            if (lastName % 2 == 0) {//末尾字必须为阴
+            int secondStork = three.getPeople() - 15;
+            int otherStork = three.getGround() - secondStork;
+//            if (otherStork % 2 == 0) {//末尾字必须为阴
             if (GossipUtil.isGoodGossip(15, three.getGround())) {
-                mNameList.add(new Name(midName, lastName));
+                for (int thirdStork = 1; thirdStork < otherStork; thirdStork++) {
+                    int fourthStork = otherStork - thirdStork;
+                    mNameList.add(new FourName(secondStork, thirdStork, fourthStork));
+                }
             }
 //            }
         }

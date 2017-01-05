@@ -27,20 +27,30 @@ public class PetMaker implements Maker {
     }
 
     public void make() {
-        initThreeList();
+//        initThreeList();
         initNameList();
         DataBaseUtil.saveNameList(mNameList, "pet_name");
-        DataBaseUtil.saveTestNameList(mNameList);
     }
 
     private void initNameList() {
-        for (Three three : mThreeList) {
-            int midName = three.getPeople() - 3;
-            int lastName = three.getGround() - midName;
-            if (GossipUtil.isGoodGossip(3, three.getGround())) {
-                mNameList.add(new PetName(midName, lastName));
+//        for (Three three : mThreeList) {
+//            int midName = three.getPeople() - 3;
+//            int lastName = three.getGround() - midName;
+//            if (GossipUtil.isGoodGossip(3, three.getGround())) {
+//                mNameList.add(new PetName(midName, lastName));
+//            }
+//        }
+
+        for (int midStork : mGoodList) {
+            if (midStork < 30) {
+//                for (int lastStork : mGoodList) {
+//                    if (lastStork < 30) {
+                        mNameList.add(new PetName(midStork, midStork));
+//                    }
+//                }
             }
         }
+
     }
 
     private void initThreeList() {

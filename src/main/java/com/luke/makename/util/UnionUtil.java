@@ -34,7 +34,7 @@ public class UnionUtil {
                 "kai,ji", "kai,kun", "kai,zhang",
 
                 "shi,bo", "ming,de", "yan,fen",
-                "jin,liang","xin,ying", "ming,feng", "qing,ju",
+                "jin,liang", "xin,ying", "ming,feng", "qing,ju",
                 "yu,ye", "xue,wen", "ming,zhen", "de,hua",
                 "ming,guang",
                 "yan,de", "yan,wen",
@@ -63,7 +63,7 @@ public class UnionUtil {
 
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("SELECT * FROM union_word WHERE ty=1 AND duoYin=1 AND goodOrIll='吉' AND kxAllStork=" + stork + ";");
+            ResultSet rs = stat.executeQuery("SELECT * FROM union_word WHERE ty=1 AND duoYin=1 AND goodOrIll!='凶' AND kxAllStork=" + stork + ";");
             while (rs.next()) {
                 String pinyin = rs.getString("py");
                 if (mAvoidWordSet.contains(pinyin)) {
@@ -81,8 +81,11 @@ public class UnionUtil {
                 String yunFu = rs.getString("yunFu");
                 String yunWei = rs.getString("yunWei");
 
+                int surName = rs.getInt("isSurname");
+                boolean isSurName = surName == 1;
+
                 Word word = new Word(wordStr, kxWord, fiveStr, storkInt, tone, pinyin, pyt,
-                        shengMu, yunTou, yunFu, yunWei);
+                        shengMu, yunTou, yunFu, yunWei, isSurName);
                 wordList.add(word);
             }
             rs.close();
@@ -95,6 +98,67 @@ public class UnionUtil {
             e.printStackTrace();
         }
         return wordList;
+    }
+
+    public static List<Word> getWordList2(int stork) {
+        List<Word> wordList = new ArrayList<Word>();
+        try {
+            //连接SQLite的JDBC
+
+            Class.forName("org.sqlite.JDBC");
+
+            //建立一个数据库名union.db的连接，如果不存在就在当前目录下创建之
+
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:union.db");
+
+            Statement stat = conn.createStatement();
+
+            ResultSet rs = stat.executeQuery("SELECT * FROM union_word WHERE kxAllStork=" + stork + ";");
+            while (rs.next()) {
+                String pinyin = rs.getString("py");
+                if (mAvoidWordSet.contains(pinyin)) {
+                    continue;
+                }
+                String wordStr = rs.getString("word");
+                String kxWord = rs.getString("kxWord");
+                String fiveStr = rs.getString("fiveElements");
+                int storkInt = rs.getInt("kxAllStork");
+                int tone = getInt(rs.getString("tone"));
+                String pyt = rs.getString("pyt");
+
+                String shengMu = rs.getString("shengMu");
+                String yunTou = rs.getString("yunTou");
+                String yunFu = rs.getString("yunFu");
+                String yunWei = rs.getString("yunWei");
+
+                int surName = rs.getInt("isSurname");
+                boolean isSurName = surName == 1;
+
+                Word word = new Word(wordStr, kxWord, fiveStr, storkInt, tone, pinyin, pyt,
+                        shengMu, yunTou, yunFu, yunWei, isSurName);
+                wordList.add(word);
+            }
+            rs.close();
+            conn.close();
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return wordList;
+    }
+
+    private static int getInt(String str) {
+        int result = 0;
+        try {
+            str = str.replaceAll(",", "");
+            result = Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

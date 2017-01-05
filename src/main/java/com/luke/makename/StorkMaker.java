@@ -1,6 +1,7 @@
 package com.luke.makename;
 
 import com.luke.makename.name.Name;
+import com.luke.makename.name.ThreeName;
 import com.luke.makename.util.DataBaseUtil;
 
 import java.io.*;
@@ -14,12 +15,12 @@ public class StorkMaker implements Maker {
     private List<Name> mNameList = new ArrayList<Name>();
 
     {
-        mNameList.add(new Name(1,23));
-        mNameList.add(new Name(1,15));
-        mNameList.add(new Name(8,24));
-        mNameList.add(new Name(1,17));
-        mNameList.add(new Name(3,15));
-        mNameList.add(new Name(1,7));
+        mNameList.add(new ThreeName(1,23));
+        mNameList.add(new ThreeName(1,15));
+        mNameList.add(new ThreeName(8,24));
+        mNameList.add(new ThreeName(1,17));
+        mNameList.add(new ThreeName(3,15));
+        mNameList.add(new ThreeName(1,7));
     }
     private StorkMaker() {
     }
